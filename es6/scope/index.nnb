@@ -1,0 +1,145 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Scope\n\nBefore we deep down into the ES6.\nWe need to know what is exactly the scope in ES6 or in Javascript.\nIn the ES6 or Javascript we have 3 main type of scope. That is:\n1. Block scope.\n2. Function scope.\n3. Global scope.\nAlso, we have the sub-scope that is local-scope and variable scope.\nEverything in Javascript work based on the ***hoisting*** mechanism.\nWhat is exactly hosting? Well, that is the variables and functions was declared and excuted from the top to bottom, from left to right. So that is how Javascript works.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Local variable\nVariable defines ***inside*** the function that we call the ***local variables*** and the function outside can not use this variables. See the example below: "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function getFullName(user) {\n  var fullName = user.firstName + \" \" + user.lastName;\n}\nconsole.log(fullName); // fullName is not defined"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Block scope\nBlock scope is the variables declared inside the curly brackets ***{}*** and outside the block that can not use variables inside the block. Some operators use this block scope as ***if***, ***switch**, ***for loop***, etc...\n\nLook at the example below:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "{\n    const age = 20;\n}\nconsole.log(age); // ReferenceError: age is not defined"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "20",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "But the function() works different. See the example below:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "{\n    const age = 20;\n    function halloWorld() {\n        return \"Hallo world\";\n    }\n}\nconsole.log(halloWorld()); // Hallo world."
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hallo world",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "That means, block scope is just affect to variables. It's not affect to function in Javascript."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Function scope\nThat mean a function create new scope in the Javascript. Variables declared inside the function can not use in outside.\n```var```, ```let```, ```const``` is still follow this mechanism. Let see the example bellow:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function computeAge(listAge) {\n    var defaultValue = 0;\n    let total = listAge.reduce((total, age) => total + age, defaultValue);\n    const average = total / listAge.length;\n    return average;\n}\n\nconst number = computeAge([20, 21, 24, 22]);\nconsole.log(number);\n// console.log(total); // ReferenceError: total is not defined\n// console.log(average); // ReferenceError: average is not defined\n// console.log(defaultValue); // ReferenceError: average is not defined"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "21.75",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Global scope or global variables\n\nVariables define ***outside*** the function that we call the ***global scope*** or ***global variables*** because they can use any where in the **global scope**. See the example below:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "var fullName = \"\"; // global variables.\n\nfunction getFullName(user) {\n  fullName = user.firstName + \" \" + user.lastName;\n}\n\nconsole.log(fullName);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Automatically Global\n\nIf assign a value to variable that has not been declared. It will automatically become a **GLOBAL VARIABLES**."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "halloWorld();\n// code here can use carName\nfunction halloWorld() {\n  console.log(\"Hallo world!!!\");\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## When is invalid variable declaration?\n1. Lifetime of a Javascript variable starts when it is declared.\n2. Function (local) variable are deleted when the function completed.\n3. Web browser, global variables are deleted when browser window closes."
+            ],
+            "outputs": []
+        }
+    ]
+}
